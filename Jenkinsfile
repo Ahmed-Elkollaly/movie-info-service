@@ -33,6 +33,16 @@ pipeline {
       
             }
         }
+	stage('Deploy application') {
+           
+	    steps {
+				withAWS(region:'us-west-2', credentials:'aws-static') {
+					sh '''
+						kubectl apply -f ./deploy-movie-info.yml
+					'''
+				}
+			}
+	}
       
       
  
